@@ -1,33 +1,22 @@
 import React, { useState } from "react";
 import Town from "./Town";
 
-const City = ({ cities }) => {
-    const [cityname, setCityname] = useState("");
+const City = ({ city, index }) => {
+    const [showCity, setShowshowCity] = useState(false);
 
-    const showTown = (input) => {
-        if (input === cityname) {
-            setCityname("");
-        } else {
-            setCityname(input);
-        }
+    const showContent = () => {
+        setShowshowCity(!showCity);
     };
     return (
         <div>
-            {cities.map((city, i) => {
-                return (
-                    <div key={city.name}>
-                        <h1
-                            id={`city${i + 1}`}
-                            onClick={(e) => {
-                                showTown(e.target.innerText);
-                            }}
-                        >
-                            {city.name}
-                        </h1>
-                        <Town key={city.name} city={cityname} cityName={city.name} towns={city.towns} />
-                    </div>
-                );
-            })}
+            <h1 onClick={showContent} id={`city${index + 1}`}>
+                {city.name}
+            </h1>
+            {showCity
+                ? city.towns.map((town, index) => {
+                      return <Town key={town.name} town={town} index={index} />;
+                  })
+                : ""}
         </div>
     );
 };

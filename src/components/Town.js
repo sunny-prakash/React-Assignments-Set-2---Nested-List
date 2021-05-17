@@ -1,18 +1,9 @@
 import React from "react";
 
-const Town = (props) => {
-    const { city, cityName, towns } = props;
+const Town = ({ town, index }) => {
     return (
         <div>
-            {city === cityName
-                ? towns.map((town, i) => {
-                      return (
-                          <div key={town.name}>
-                              <p id={`town${i + 1}`}>{town.name}</p>
-                          </div>
-                      );
-                  })
-                : ""}
+            <h3 id={`town${index + 1}`}>{town.name}</h3>
         </div>
     );
 };

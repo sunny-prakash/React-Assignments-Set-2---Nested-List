@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import "./../styles/App.css";
-import City from "./City";
+import State from "./State";
 
 // Do not alter the states const and values inside it.
 const states = [
@@ -156,82 +156,11 @@ const states = [
 ];
 
 const App = () => {
-    const [state1, setState1] = useState(false);
-    const [state2, setState2] = useState(false);
-    const [state3, setState3] = useState(false);
-    const [state4, setState4] = useState(false);
-
-    const showContent = (id) => {
-        switch (id) {
-            case "state1":
-                setState1(!state1);
-                break;
-            case "state2":
-                setState2(!state2);
-                break;
-            case "state3":
-                setState3(!state3);
-                break;
-            case "state4":
-                setState4(!state4);
-                break;
-            default:
-                "";
-        }
-    };
-
     return (
         <div id="main">
-            <div>
-                <div>
-                    <button onClick={(e) => showContent(e.target.id)} id="state1">
-                        {states[0].name}
-                    </button>
-                    {state1 ? (
-                        <div>
-                            <City cities={states[0].cities} />
-                        </div>
-                    ) : (
-                        ""
-                    )}
-                </div>
-                <div>
-                    <button onClick={(e) => showContent(e.target.id)} id="state2">
-                        {states[1].name}
-                    </button>
-                    {state2 ? (
-                        <div>
-                            <City cities={states[1].cities} />
-                        </div>
-                    ) : (
-                        ""
-                    )}
-                </div>
-                <div>
-                    <button onClick={(e) => showContent(e.target.id)} id="state3">
-                        {states[2].name}
-                    </button>
-                    {state3 ? (
-                        <div>
-                            <City cities={states[2].cities} />
-                        </div>
-                    ) : (
-                        ""
-                    )}
-                </div>
-                <div>
-                    <button onClick={(e) => showContent(e.target.id)} id="state4">
-                        {states[3].name}
-                    </button>
-                    {state4 ? (
-                        <div>
-                            <City cities={states[3].cities} />
-                        </div>
-                    ) : (
-                        ""
-                    )}
-                </div>
-            </div>
+            {states.map((state, index) => {
+                return <State key={state.name} state={state} index={index} />;
+            })}
         </div>
     );
 };
